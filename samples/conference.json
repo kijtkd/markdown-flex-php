@@ -1,0 +1,329 @@
+{
+    "type": "bubble",
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "WORKS Online Meeting",
+                "wrap": true,
+                "weight": "bold",
+                "size": "xl",
+                "color": "#222222",
+                "margin": "none"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Date",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Sept 24th, 2020 \n 04:00 PM - 05:00 PM",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "flex": 7,
+                        "color": "#222222",
+                        "align": "start"
+                    }
+                ],
+                "margin": "xxl"
+            },
+            {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "URL",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "text": "meeting.works.do",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "color": "#0E71EB",
+                        "flex": 7
+                    }
+                ],
+                "margin": "md"
+            },
+            {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Meeting ID",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "text": "111 222 3333",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "flex": 7,
+                        "color": "#222222"
+                    }
+                ],
+                "margin": "md"
+            },
+            {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Host",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "flex": 7,
+                        "text": "WORKS",
+                        "color": "#222222"
+                    }
+                ],
+                "margin": "md"
+            }
+        ],
+        "spacing": "sm"
+    },
+    "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                    "type": "uri",
+                    "label": "Start",
+                    "uri": "https://worksmobile.com"
+                },
+                "color": "#0E71EB",
+                "height": "sm"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Copy",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "style": "secondary",
+                        "height": "sm",
+                        "color": "#eeeeee",
+                        "flex": 1
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Edit",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "style": "secondary",
+                        "height": "sm",
+                        "flex": 1,
+                        "color": "#eeeeee"
+                    }
+                ],
+                "spacing": "md",
+                "margin": "md"
+            }
+        ]
+    }
+}{
+    "type": "bubble",
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "WORKS Online Meeting",
+                "wrap": true,
+                "weight": "bold",
+                "size": "xl",
+                "color": "#222222",
+                "margin": "none"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Date",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Sept 24th, 2020 \n 04:00 PM - 05:00 PM",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "flex": 7,
+                        "color": "#222222",
+                        "align": "start"
+                    }
+                ],
+                "margin": "xxl"
+            },
+            {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "URL",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "text": "meeting.works.do",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "color": "#0E71EB",
+                        "flex": 7
+                    }
+                ],
+                "margin": "md"
+            },
+            {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Meeting ID",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "text": "111 222 3333",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "flex": 7,
+                        "color": "#222222"
+                    }
+                ],
+                "margin": "md"
+            },
+            {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Host",
+                        "wrap": true,
+                        "flex": 3,
+                        "size": "xs",
+                        "color": "#989898"
+                    },
+                    {
+                        "type": "text",
+                        "wrap": true,
+                        "size": "xs",
+                        "margin": "md",
+                        "flex": 7,
+                        "text": "WORKS",
+                        "color": "#222222"
+                    }
+                ],
+                "margin": "md"
+            }
+        ],
+        "spacing": "sm"
+    },
+    "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                    "type": "uri",
+                    "label": "Start",
+                    "uri": "https://worksmobile.com"
+                },
+                "color": "#0E71EB",
+                "height": "sm"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Copy",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "style": "secondary",
+                        "height": "sm",
+                        "color": "#eeeeee",
+                        "flex": 1
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Edit",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "style": "secondary",
+                        "height": "sm",
+                        "flex": 1,
+                        "color": "#eeeeee"
+                    }
+                ],
+                "spacing": "md",
+                "margin": "md"
+            }
+        ]
+    }
+}

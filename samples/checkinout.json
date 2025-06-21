@@ -1,0 +1,110 @@
+{
+    "type": "bubble",
+    "size": "kilo",
+    "header": {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+            {
+                "type": "text",
+                "text": "Attendance management ",
+                "wrap": true,
+                "size": "md",
+                "color": "#ffffff"
+            }
+        ],
+        "backgroundColor": "#3d9cf5"
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Clock-In",
+                                "size": "sm",
+                                "weight": "bold",
+                                "color": "#767676",
+                                "gravity": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "09:00",
+                                "weight": "bold",
+                                "size": "lg",
+                                "align": "end"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "separator",
+                        "margin": "lg"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Clock-Out",
+                                "size": "sm",
+                                "weight": "bold",
+                                "color": "#3d9cf5",
+                                "gravity": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "-- : --",
+                                "weight": "bold",
+                                "size": "xl",
+                                "align": "end"
+                            }
+                        ],
+                        "margin": "lg"
+                    }
+                ],
+                "paddingStart": "5px",
+                "paddingEnd": "5px"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Clock-out",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "style": "primary",
+                        "color": "#3d9cf5",
+                        "margin": "none",
+                        "height": "sm"
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "uri": "https://worksmobile.com",
+                            "label": "Edit"
+                        },
+                        "style": "secondary",
+                        "color": "#f4f4f4",
+                        "margin": "md",
+                        "height": "sm"
+                    }
+                ],
+                "margin": "xl"
+            }
+        ]
+    }
+}

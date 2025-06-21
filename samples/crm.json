@@ -1,0 +1,532 @@
+{
+    "type": "bubble",
+    "size": "mega",
+    "hero": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "image",
+                                "url": "https://i.ibb.co/6ZFPdjV/07-william-ceo.png",
+                                "aspectMode": "cover"
+                            }
+                        ],
+                        "width": "40px",
+                        "backgroundColor": "#dddddd",
+                        "cornerRadius": "6px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Lead",
+                                "size": "xs",
+                                "color": "#ffffff80"
+                            },
+                            {
+                                "type": "text",
+                                "text": "hello, world",
+                                "contents": [
+                                    {
+                                        "type": "span",
+                                        "text": "Russel Peters",
+                                        "size": "md",
+                                        "color": "#ffffff",
+                                        "weight": "bold"
+                                    },
+                                    {
+                                        "type": "span",
+                                        "text": "       "
+                                    },
+                                    {
+                                        "type": "span",
+                                        "text": "Manager",
+                                        "size": "xs",
+                                        "color": "#ffffff80"
+                                    }
+                                ]
+                            }
+                        ],
+                        "flex": 3,
+                        "margin": "md"
+                    }
+                ]
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Company",
+                        "size": "xs",
+                        "color": "#ffffff80"
+                    },
+                    {
+                        "type": "text",
+                        "text": "WORKS Corp.",
+                        "size": "xs",
+                        "color": "#ffffff",
+                        "weight": "bold"
+                    }
+                ],
+                "margin": "xl"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Email",
+                        "size": "xs",
+                        "color": "#ffffff80"
+                    },
+                    {
+                        "type": "text",
+                        "text": "works@works.do",
+                        "size": "xs",
+                        "color": "#ffffff",
+                        "weight": "bold"
+                    }
+                ],
+                "margin": "lg"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Phone (2)",
+                        "size": "xs",
+                        "color": "#ffffff80"
+                    },
+                    {
+                        "type": "text",
+                        "text": "000-111-2222 / 333-444-5555",
+                        "size": "xs",
+                        "color": "#ffffff",
+                        "weight": "bold"
+                    }
+                ],
+                "margin": "lg"
+            }
+        ],
+        "backgroundColor": "#278cf8",
+        "paddingAll": "20px"
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "filler"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Open",
+                                "size": "xs",
+                                "color": "#ffffff",
+                                "weight": "bold",
+                                "align": "center"
+                            },
+                            {
+                                "type": "filler"
+                            }
+                        ],
+                        "width": "65px",
+                        "height": "30px",
+                        "backgroundColor": "#278cf8",
+                        "cornerRadius": "100px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "filler"
+                            }
+                        ],
+                        "width": "10px",
+                        "height": "4px",
+                        "backgroundColor": "#278cf8",
+                        "offsetTop": "14px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "filler"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Working",
+                                "size": "xs",
+                                "color": "#ffffff",
+                                "weight": "bold",
+                                "align": "center"
+                            },
+                            {
+                                "type": "filler"
+                            }
+                        ],
+                        "width": "85px",
+                        "height": "30px",
+                        "backgroundColor": "#278cf8",
+                        "cornerRadius": "100px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "filler"
+                            }
+                        ],
+                        "width": "10px",
+                        "height": "4px",
+                        "backgroundColor": "#e8ebed",
+                        "offsetTop": "14px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "filler"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Converted",
+                                "size": "xs",
+                                "color": "#767676",
+                                "align": "center"
+                            },
+                            {
+                                "type": "filler"
+                            }
+                        ],
+                        "width": "85px",
+                        "height": "30px",
+                        "backgroundColor": "#e8ebed",
+                        "cornerRadius": "100px"
+                    }
+                ],
+                "alignItems": "center"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Activity Timeline",
+                                "size": "md",
+                                "color": "#444444",
+                                "weight": "bold"
+                            },
+                            {
+                                "type": "separator",
+                                "margin": "md"
+                            }
+                        ],
+                        "margin": "xs"
+                    }
+                ],
+                "margin": "xxl"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Nov 27th",
+                                "flex": 2,
+                                "size": "xs",
+                                "color": "#444444"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "filler"
+                                    },
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                                "type": "filler"
+                                            }
+                                        ],
+                                        "width": "12px",
+                                        "height": "12px",
+                                        "cornerRadius": "30px",
+                                        "borderWidth": "2px",
+                                        "borderColor": "#278cf8"
+                                    },
+                                    {
+                                        "type": "filler"
+                                    }
+                                ],
+                                "flex": 0
+                            },
+                            {
+                                "type": "text",
+                                "text": "Make a Call",
+                                "size": "sm",
+                                "color": "#278cf8",
+                                "flex": 6,
+                                "weight": "bold"
+                            }
+                        ],
+                        "spacing": "lg"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "filler"
+                                    }
+                                ],
+                                "flex": 2
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "horizontal",
+                                        "contents": [
+                                            {
+                                                "type": "filler"
+                                            },
+                                            {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "contents": [
+                                                    {
+                                                        "type": "filler"
+                                                    }
+                                                ],
+                                                "flex": 1,
+                                                "width": "2px",
+                                                "backgroundColor": "#278cf840"
+                                            },
+                                            {
+                                                "type": "filler"
+                                            }
+                                        ],
+                                        "flex": 1
+                                    }
+                                ],
+                                "flex": 0,
+                                "width": "12px"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Phone added",
+                                "size": "xxs",
+                                "color": "#8c8c8c",
+                                "gravity": "center",
+                                "flex": 6
+                            }
+                        ],
+                        "spacing": "lg",
+                        "height": "64px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Nov 13th",
+                                "flex": 2,
+                                "size": "xs",
+                                "color": "#444444"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "filler"
+                                    },
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                                "type": "filler"
+                                            }
+                                        ],
+                                        "width": "12px",
+                                        "height": "12px",
+                                        "cornerRadius": "30px",
+                                        "backgroundColor": "#278cf8"
+                                    },
+                                    {
+                                        "type": "filler"
+                                    }
+                                ],
+                                "flex": 0
+                            },
+                            {
+                                "type": "text",
+                                "text": "Sent an Email",
+                                "size": "sm",
+                                "color": "#444444",
+                                "flex": 6
+                            }
+                        ],
+                        "spacing": "lg"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "filler"
+                                    }
+                                ],
+                                "flex": 2
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "horizontal",
+                                        "contents": [
+                                            {
+                                                "type": "filler"
+                                            },
+                                            {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "contents": [
+                                                    {
+                                                        "type": "filler"
+                                                    }
+                                                ],
+                                                "flex": 1,
+                                                "width": "2px",
+                                                "backgroundColor": "#278cf8"
+                                            },
+                                            {
+                                                "type": "filler"
+                                            }
+                                        ],
+                                        "flex": 1
+                                    }
+                                ],
+                                "flex": 0,
+                                "width": "12px"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Stage Modified",
+                                "size": "xxs",
+                                "color": "#8c8c8c",
+                                "gravity": "center",
+                                "flex": 6
+                            }
+                        ],
+                        "spacing": "lg",
+                        "height": "64px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Nov 10th",
+                                "flex": 2,
+                                "size": "xs",
+                                "color": "#444444"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "filler"
+                                    },
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                                "type": "filler"
+                                            }
+                                        ],
+                                        "width": "12px",
+                                        "height": "12px",
+                                        "cornerRadius": "30px",
+                                        "backgroundColor": "#278cf8"
+                                    },
+                                    {
+                                        "type": "filler"
+                                    }
+                                ],
+                                "flex": 0
+                            },
+                            {
+                                "type": "text",
+                                "text": "Lead Created",
+                                "size": "sm",
+                                "color": "#444444",
+                                "flex": 6
+                            }
+                        ],
+                        "spacing": "lg"
+                    }
+                ],
+                "margin": "xl"
+            }
+        ]
+    }
+}

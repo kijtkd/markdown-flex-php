@@ -1,0 +1,329 @@
+{
+    "type": "carousel",
+    "contents": [
+        {
+            "type": "bubble",
+            "size": "mega",
+            "header": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "WORKS",
+                        "size": "lg",
+                        "color": "#ffffff",
+                        "weight": "bold"
+                    }
+                ],
+                "backgroundColor": "#00c85f"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "image",
+                                "url": "https://i.ibb.co/tXyrDKh/11-matthew-operation-quality-manager.png",
+                                "size": "full"
+                            }
+                        ],
+                        "width": "120px",
+                        "height": "120px",
+                        "cornerRadius": "180px",
+                        "borderWidth": "1px",
+                        "borderColor": "#22222210",
+                        "offsetStart": "75px",
+                        "offsetEnd": "75px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "John Smith",
+                                "weight": "bold",
+                                "size": "xl",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Graphic Designer",
+                                "size": "sm",
+                                "align": "center"
+                            }
+                        ],
+                        "margin": "xl"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "Department",
+                                        "size": "sm",
+                                        "color": "#858f89",
+                                        "flex": 3,
+                                        "margin": "md"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "Product Design 1",
+                                        "size": "sm",
+                                        "margin": "md",
+                                        "flex": 5
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "Phone",
+                                        "size": "sm",
+                                        "color": "#858f89",
+                                        "flex": 3,
+                                        "margin": "md"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "000-111-2222",
+                                        "size": "sm",
+                                        "margin": "md",
+                                        "flex": 5
+                                    }
+                                ],
+                                "margin": "sm"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "E-mail",
+                                        "size": "sm",
+                                        "color": "#858f89",
+                                        "flex": 3,
+                                        "margin": "md"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "email@works.com",
+                                        "size": "sm",
+                                        "margin": "md",
+                                        "flex": 5
+                                    }
+                                ],
+                                "margin": "sm"
+                            }
+                        ],
+                        "margin": "xxl",
+                        "width": "260px",
+                        "alignItems": "center",
+                        "paddingAll": "6px"
+                    }
+                ]
+            },
+            "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Send a message",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "style": "primary"
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Call",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "margin": "md",
+                        "style": "secondary"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "bubble",
+            "size": "mega",
+            "header": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "WORKS",
+                        "size": "lg",
+                        "color": "#ffffff",
+                        "weight": "bold"
+                    }
+                ],
+                "backgroundColor": "#00c85f"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "image",
+                                "url": "https://i.ibb.co/jrD8083/05-emma-business-maketing-manager.png",
+                                "size": "full"
+                            }
+                        ],
+                        "width": "120px",
+                        "height": "120px",
+                        "cornerRadius": "180px",
+                        "borderColor": "#22222210",
+                        "borderWidth": "1px",
+                        "offsetStart": "75px",
+                        "offsetEnd": "75px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Sarah Harding",
+                                "weight": "bold",
+                                "size": "xl",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "UX Designer",
+                                "size": "sm",
+                                "align": "center"
+                            }
+                        ],
+                        "margin": "xl"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "Department",
+                                        "size": "sm",
+                                        "color": "#858f89",
+                                        "flex": 3,
+                                        "margin": "md"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "Interface Design 1",
+                                        "size": "sm",
+                                        "margin": "md",
+                                        "flex": 5
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "Phone",
+                                        "size": "sm",
+                                        "color": "#858f89",
+                                        "flex": 3,
+                                        "margin": "md"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "333-444-5555",
+                                        "size": "sm",
+                                        "margin": "md",
+                                        "flex": 5
+                                    }
+                                ],
+                                "margin": "sm"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "E-mail",
+                                        "size": "sm",
+                                        "color": "#858f89",
+                                        "flex": 3,
+                                        "margin": "md"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "email@works.com",
+                                        "size": "sm",
+                                        "margin": "md",
+                                        "flex": 5
+                                    }
+                                ],
+                                "margin": "sm"
+                            }
+                        ],
+                        "margin": "xxl",
+                        "width": "260px",
+                        "alignItems": "center",
+                        "paddingAll": "6px"
+                    }
+                ]
+            },
+            "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Send a message",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "style": "primary"
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "Call",
+                            "uri": "https://worksmobile.com"
+                        },
+                        "margin": "md",
+                        "style": "secondary"
+                    }
+                ]
+            }
+        }
+    ]
+}

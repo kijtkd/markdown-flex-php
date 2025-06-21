@@ -1,0 +1,547 @@
+{
+    "type": "bubble",
+    "styles": {
+        "footer": {
+            "separator": true
+        }
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "Daily Report",
+                "weight": "bold",
+                "color": "#1DB446",
+                "size": "sm"
+            },
+            {
+                "type": "text",
+                "text": "Sales Summary",
+                "weight": "bold",
+                "size": "xxl",
+                "margin": "md",
+                "color": "#222222"
+            },
+            {
+                "type": "text",
+                "text": "WORKS Online Store",
+                "size": "xxs",
+                "color": "#aaaaaa",
+                "wrap": true
+            },
+            {
+                "type": "separator",
+                "margin": "xxl"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Particulars",
+                                "size": "xs",
+                                "weight": "regular",
+                                "color": "#222222"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Description",
+                                "size": "xs",
+                                "align": "end",
+                                "weight": "regular",
+                                "color": "#222222"
+                            }
+                        ],
+                        "width": "80px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Amount",
+                                "size": "xs",
+                                "align": "end",
+                                "weight": "regular",
+                                "color": "#222222"
+                            }
+                        ],
+                        "width": "80px",
+                        "margin": "sm"
+                    }
+                ],
+                "margin": "md"
+            },
+            {
+                "type": "separator",
+                "margin": "md"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Sales",
+                        "size": "sm",
+                        "weight": "bold",
+                        "color": "#222222"
+                    },
+                    {
+                        "type": "text",
+                        "text": "$700",
+                        "weight": "bold",
+                        "size": "sm",
+                        "align": "end",
+                        "color": "#222222"
+                    }
+                ],
+                "margin": "xl"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [],
+                                        "width": "2px",
+                                        "backgroundColor": "#222222",
+                                        "height": "20px",
+                                        "position": "absolute"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "size": "xs",
+                                        "flex": 0,
+                                        "margin": "xs",
+                                        "offsetStart": "10px",
+                                        "text": "Blanket",
+                                        "color": "#999999"
+                                    }
+                                ]
+                            }
+                        ],
+                        "margin": "xs"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "size": "xxs",
+                                "text": "2EA",
+                                "align": "end",
+                                "offsetTop": "3px",
+                                "color": "#999999"
+                            }
+                        ],
+                        "offsetStart": "10px",
+                        "width": "80px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "$200",
+                                "size": "xs",
+                                "align": "end",
+                                "color": "#999999"
+                            }
+                        ],
+                        "margin": "xl",
+                        "width": "80px"
+                    }
+                ],
+                "margin": "sm"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [],
+                                        "width": "2px",
+                                        "height": "20px",
+                                        "position": "absolute",
+                                        "backgroundColor": "#222222"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "size": "xs",
+                                        "flex": 0,
+                                        "margin": "xs",
+                                        "offsetStart": "10px",
+                                        "text": "Pillow",
+                                        "color": "#999999"
+                                    }
+                                ]
+                            }
+                        ],
+                        "margin": "xs"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "size": "xxs",
+                                "text": "5EA",
+                                "align": "end",
+                                "offsetTop": "3px",
+                                "color": "#999999"
+                            }
+                        ],
+                        "offsetStart": "10px",
+                        "width": "80px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "$150",
+                                "size": "xs",
+                                "align": "end",
+                                "color": "#999999"
+                            }
+                        ],
+                        "margin": "xl",
+                        "width": "80px"
+                    }
+                ]
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [],
+                                        "width": "2px",
+                                        "height": "20px",
+                                        "position": "absolute",
+                                        "backgroundColor": "#222222"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "size": "xs",
+                                        "flex": 0,
+                                        "margin": "xs",
+                                        "offsetStart": "10px",
+                                        "text": "Bed",
+                                        "color": "#999999"
+                                    }
+                                ]
+                            }
+                        ],
+                        "margin": "xs"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "size": "xxs",
+                                "text": "1EA",
+                                "align": "end",
+                                "offsetTop": "3px",
+                                "color": "#999999"
+                            }
+                        ],
+                        "offsetStart": "10px",
+                        "width": "80px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "$350",
+                                "size": "xs",
+                                "align": "end",
+                                "color": "#999999"
+                            }
+                        ],
+                        "margin": "xl",
+                        "width": "80px"
+                    }
+                ]
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Expenses",
+                        "size": "sm",
+                        "weight": "bold",
+                        "color": "#222222"
+                    },
+                    {
+                        "type": "text",
+                        "text": "$300",
+                        "weight": "bold",
+                        "size": "sm",
+                        "align": "end",
+                        "color": "#222222"
+                    }
+                ],
+                "margin": "xl"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [],
+                                        "width": "2px",
+                                        "backgroundColor": "#222222",
+                                        "height": "20px",
+                                        "position": "absolute",
+                                        "margin": "xs"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "size": "xs",
+                                        "color": "#999999",
+                                        "flex": 0,
+                                        "margin": "xs",
+                                        "offsetStart": "10px",
+                                        "text": "Lease"
+                                    }
+                                ]
+                            }
+                        ],
+                        "margin": "xs"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "$250",
+                                "color": "#999999",
+                                "size": "xs",
+                                "align": "end"
+                            }
+                        ],
+                        "margin": "xl",
+                        "width": "80px"
+                    }
+                ],
+                "margin": "sm"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [],
+                                        "width": "2px",
+                                        "backgroundColor": "#222222",
+                                        "height": "20px",
+                                        "position": "absolute"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "size": "xs",
+                                        "color": "#999999",
+                                        "flex": 0,
+                                        "margin": "xs",
+                                        "offsetStart": "10px",
+                                        "text": "Shipment"
+                                    }
+                                ]
+                            }
+                        ],
+                        "margin": "xs"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "color": "#999999",
+                                "size": "xxs",
+                                "text": "Bed delivery",
+                                "align": "end",
+                                "style": "italic",
+                                "offsetTop": "2px"
+                            }
+                        ],
+                        "offsetStart": "10px",
+                        "width": "80px"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "$50",
+                                "color": "#999999",
+                                "size": "xs",
+                                "align": "end"
+                            }
+                        ],
+                        "margin": "xl",
+                        "width": "80px"
+                    }
+                ]
+            },
+            {
+                "type": "separator",
+                "margin": "xxl"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Profit",
+                                "size": "sm",
+                                "flex": 0,
+                                "margin": "sm",
+                                "weight": "bold",
+                                "color": "#222222"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Total",
+                                "size": "sm",
+                                "flex": 0,
+                                "weight": "bold",
+                                "color": "#222222"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "filler"
+                            },
+                            {
+                                "type": "text",
+                                "text": "$250",
+                                "weight": "bold",
+                                "size": "lg",
+                                "align": "end",
+                                "color": "#222222"
+                            }
+                        ],
+                        "width": "80px"
+                    }
+                ],
+                "margin": "xl"
+            },
+            {
+                "type": "separator",
+                "margin": "xl"
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "md",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "ISSUE DATE",
+                        "size": "xs",
+                        "color": "#aaaaaa",
+                        "flex": 0
+                    },
+                    {
+                        "type": "text",
+                        "text": "2020-12-05",
+                        "color": "#aaaaaa",
+                        "size": "xs",
+                        "align": "end"
+                    }
+                ]
+            }
+        ]
+    },
+    "footer": {
+        "separator": true
+    }
+}

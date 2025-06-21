@@ -1,0 +1,102 @@
+{
+    "type": "bubble",
+    "size": "mega",
+    "hero": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "240px",
+                        "height": "6px",
+                        "backgroundColor": "#ffffff"
+                    },
+                    {
+                        "type": "text",
+                        "text": "YOU",
+                        "margin": "lg",
+                        "size": "3xl",
+                        "color": "#ffffff",
+                        "weight": "bold",
+                        "align": "center"
+                    },
+                    {
+                        "type": "text",
+                        "text": "ARE",
+                        "size": "3xl",
+                        "color": "#ffffff",
+                        "weight": "bold",
+                        "align": "center"
+                    },
+                    {
+                        "type": "text",
+                        "text": " INVITED",
+                        "size": "3xl",
+                        "color": "#ffffff",
+                        "weight": "bold",
+                        "align": "center"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "240px",
+                        "height": "6px",
+                        "backgroundColor": "#ffffff",
+                        "margin": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "to",
+                        "margin": "lg",
+                        "color": "#ffffff",
+                        "style": "italic",
+                        "align": "center"
+                    },
+                    {
+                        "type": "text",
+                        "text": "10th ANNIVERSARY PARTY",
+                        "color": "#ffffff",
+                        "weight": "bold",
+                        "margin": "sm",
+                        "align": "center"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Saturday, November 7, 2020",
+                                "color": "#ffffff",
+                                "size": "sm",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "youraddress, city",
+                                "color": "#ffffff",
+                                "size": "sm",
+                                "align": "center"
+                            }
+                        ],
+                        "width": "240px",
+                        "height": "60px",
+                        "backgroundColor": "#ffffff30",
+                        "margin": "xl",
+                        "cornerRadius": "2px",
+                        "paddingAll": "9px"
+                    }
+                ],
+                "paddingAll": "30px",
+                "backgroundColor": "#81DBA0"
+            }
+        ]
+    }
+}
