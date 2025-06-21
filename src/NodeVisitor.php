@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MdFlex;
+namespace Kijtkd;
 
 use League\CommonMark\Node\Node;
 use League\CommonMark\Node\NodeWalker;

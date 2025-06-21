@@ -36,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MdFlex\\": "src/"
+            "Kijtkd\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MdFlex\\Tests\\": "tests/"
+            "Kijtkd\\Tests\\": "tests/"
         }
     },
     "scripts": {

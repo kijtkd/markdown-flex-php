@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use MdFlex\MarkdownFlexConverter;
+use Kijtkd\MarkdownFlexConverter;
 
 $markdown = '# Hello World
 This is a test of the local package.';

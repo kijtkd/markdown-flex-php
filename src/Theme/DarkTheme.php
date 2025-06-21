@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MdFlex\Theme;
+namespace Kijtkd\Theme;
 
 final class DarkTheme extends DefaultTheme
 {

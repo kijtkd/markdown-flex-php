@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MdFlex;
+namespace Kijtkd;
 
 final class SizeCalculator
 {

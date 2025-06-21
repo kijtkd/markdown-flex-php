@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace MdFlex;
+namespace Kijtkd;
 
-use MdFlex\Parser\CommonMarkParser;
-use MdFlex\Parser\ParserInterface;
-use MdFlex\Theme\DefaultTheme;
-use MdFlex\Theme\ThemeInterface;
+use Kijtkd\Parser\CommonMarkParser;
+use Kijtkd\Parser\ParserInterface;
+use Kijtkd\Theme\DefaultTheme;
+use Kijtkd\Theme\ThemeInterface;
 
 final class MarkdownFlexConverter
 {

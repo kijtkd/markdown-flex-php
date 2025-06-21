@@ -15,7 +15,7 @@ composer require mdflex/markdown-flex-php
 ```php
 <?php
 
-use MdFlex\MarkdownFlexConverter;
+use Kijtkd\MarkdownFlexConverter;
 
 $converter = new MarkdownFlexConverter();
 [$json, $altText] = $converter->convert($markdown);
@@ -30,8 +30,8 @@ $client->post('/messages', [
 ### With Theme
 
 ```php
-use MdFlex\MarkdownFlexConverter;
-use MdFlex\Theme\DarkTheme;
+use Kijtkd\MarkdownFlexConverter;
+use Kijtkd\Theme\DarkTheme;
 
 $converter = (new MarkdownFlexConverter())
     ->setTheme(new DarkTheme());

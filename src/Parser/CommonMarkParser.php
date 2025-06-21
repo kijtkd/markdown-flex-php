@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MdFlex\Parser;
+namespace Kijtkd\Parser;
 
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment\Environment;

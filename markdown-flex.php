@@ -3,8 +3,8 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use MdFlex\MarkdownFlexConverter;
-use MdFlex\Theme\DarkTheme;
+use Kijtkd\MarkdownFlexConverter;
+use Kijtkd\Theme\DarkTheme;
 
 function showHelp() {
     echo "Usage: php markdown-flex.php [OPTIONS]\n";

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MdFlex;
+namespace Kijtkd;
 
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\CommonMark\Node\Block\ListBlock;
@@ -22,7 +22,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Emphasis;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Node\Node;
-use MdFlex\Theme\ThemeInterface;
+use Kijtkd\Theme\ThemeInterface;
 
 final class ComponentFactory
 {

@@ -2,82 +2,68 @@
 
 ## 概要
 MarkdownをLINE WORKS Bot用Flexible Templateに変換するPHPライブラリ。
-DESIGN.mdに基づく完全実装で、変換と検証の両機能を提供。
+変換・検証・CLI機能を提供する完全実装。
 
-## 主要コンポーネント
+## 主要機能
+- **変換**: Markdown → LINE WORKS Flex Message
+- **検証**: Flex Message仕様準拠チェック
+- **制限対応**: サイズ・文字数制限の自動処理
+- **CLI**: コマンドライン変換・検証ツール
 
-### 変換系クラス
+## アーキテクチャ
+### 名前空間: `Kijtkd\`
 - **MarkdownFlexConverter**: メインファサード
-- **ComponentFactory**: Markdown要素→Flexコンポーネント変換
-- **BubbleBuilder**: 10KB制限管理、自動分割
-- **CarouselBuilder**: 50KB/10Bubble制限、altText生成（400文字制限）
-- **NodeVisitor**: AST走査
-- **SizeCalculator**: UTF-8バイト長測定
+- **ComponentFactory**: Markdown→Flex変換ロジック
+- **FlexValidator**: Flex仕様検証
+- **BubbleBuilder/CarouselBuilder**: サイズ制限管理
+- **Theme**: DefaultTheme/DarkTheme
 
-### 検証系クラス
-- **FlexValidator**: Flexメッセージの完全検証
-  - 構造検証（flex/bubble/carousel）
-  - サイズ制限チェック
-  - コンポーネント仕様検証（box/text/image/button/icon等）
-  - 特殊形式対応（hero-only bubble、separator footer）
+## Markdown対応要素
+| 要素 | Flexコンポーネント | 備考 |
+|-----|------------------|------|
+| `# 見出し` | text | サイズ: xxl(H1)~xs(H6) |
+| 段落 | text | wrap: true |
+| `- リスト` | box + text | 順序・非順序対応 |
+| `![画像](url)` | image | aspectRatio: 20:13 |
+| `` `code` `` | text/box | monospace styling |
+| `> 引用` | box | 背景色付き |
+| テーブル | box(vertical) + box(horizontal) | ヘッダー・データ行対応 |
 
-### テーマ・パーサー
-- **CommonMarkParser**: league/commonmark使用
-- **DefaultTheme/DarkTheme**: カスタマイズ可能
-
-## CLIツール
-
-### markdown-flex.php（変換ツール）
+## CLI使用方法
 ```bash
-php8.3 markdown-flex.php -f input.md              # 標準出力
+# 変換
+php8.3 markdown-flex.php -f input.md              # stdout
 php8.3 markdown-flex.php -f input.md -o out.json  # ファイル出力
 php8.3 markdown-flex.php -f input.md -t dark      # テーマ指定
-php8.3 markdown-flex.php -f input.md -c           # コード画像化
+
+# 検証
+php8.3 flex-checker.php -f message.json           # ファイル
+php8.3 flex-checker.php -v                        # 詳細モード
+cat message.json | php8.3 flex-checker.php        # パイプ
 ```
 
-### flex-checker.php（検証ツール）
-```bash
-php8.3 flex-checker.php -f message.json           # ファイル検証
-php8.3 flex-checker.php -j '{"type":"flex",...}'  # JSON文字列検証
-php8.3 flex-checker.php -v                        # 詳細出力
-cat message.json | php8.3 flex-checker.php        # パイプ入力
+## 基本使用例
+```php
+use Kijtkd\MarkdownFlexConverter;
+use Kijtkd\FlexValidator;
+
+// 変換
+$converter = new MarkdownFlexConverter();
+[$json, $altText] = $converter->convert($markdown);
+
+// 検証
+$validator = new FlexValidator();
+$errors = $validator->validate($flexMessage);
 ```
 
-LINE WORKS Flex Simulatorと同等の検証機能を提供。samplesディレクトリの9サンプル全てに対応。
-
-## 出力形式
-
-### Flexメッセージ形式
-```json
-{
-  "type": "flex",
-  "altText": "400文字以内",
-  "contents": {
-    "type": "bubble",
-    "body": {...}
-  }
-}
-```
-
-### 制限自動対応
-- Bubble: ≤10KB（超過時に自動分割）
+## LINE WORKS制限
+自動対応済み：
+- Bubble: ≤10KB（超過時自動分割）
 - Text: ≤2000文字（自動切り詰め）
 - altText: ≤400文字（自動切り詰め）
 - Carousel: ≤10 Bubbles、≤50KB
 
-## Markdown対応要素
-| 要素 | Flexコンポーネント |
-|-----|------------------|
-| `# 見出し` | text (size: xxl~xs) |
-| 段落 | text (wrap: true) |
-| `- リスト` | box + bullet + text |
-| `![画像](url)` | image |
-| `` `code` `` | text/box |
-| `> 引用` | box (背景色付き) |
-
 ## インストール
-
-### Composerローカルパス
 ```json
 {
   "repositories": [{"type": "path", "url": "../markdown-flex-php"}],
@@ -85,32 +71,28 @@ LINE WORKS Flex Simulatorと同等の検証機能を提供。samplesディレク
 }
 ```
 
-## 使用例
+## 技術仕様
+- PHP 8.1+ (8.3で検証済み)
+- league/commonmark ^2.4
+- PSR-4: `Kijtkd\` → `src/`
+- Flex Simulator互換検証
 
-### 基本変換
-```php
-use MdFlex\MarkdownFlexConverter;
+## 開発履歴
+### v1.0 - 基本実装
+- 基本Markdown要素対応
+- Flex変換・検証機能
+- CLI tools
 
-$converter = new MarkdownFlexConverter();
-[$json, $altText] = $converter->convert($markdown);
-```
+### v1.1 - テーブル対応
+- テーブル要素の完全実装
+- インラインコード・画像のテーブル内対応
+- NodeVisitor最適化
 
-### 検証
-```php
-use MdFlex\FlexValidator;
-
-$validator = new FlexValidator();
-$errors = $validator->validate($flexMessage);
-if (empty($errors)) {
-    // Valid
-}
-```
-
-## 動作環境
-- PHP 8.1以上（8.3で動作確認済み）
-- 依存: league/commonmark ^2.4, psr/simple-cache ^3.0
+### v1.2 - 名前空間変更
+- MdFlex → Kijtkd名前空間変更
+- 全ファイル・ドキュメント更新完了
 
 ## 除外ファイル
 - DESIGN.md（設計書）
 - .claude/（メタデータ）
-- 出力JSONファイル
+- test-*.md、*.json（テスト用）

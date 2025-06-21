@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace MdFlex\Tests;
+namespace Kijtkd\Tests;
 
-use MdFlex\MarkdownFlexConverter;
-use MdFlex\Theme\DarkTheme;
+use Kijtkd\MarkdownFlexConverter;
+use Kijtkd\Theme\DarkTheme;
 use PHPUnit\Framework\TestCase;
 
 final class MarkdownFlexConverterTest extends TestCase

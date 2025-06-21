@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MdFlex\Tests;
+namespace Kijtkd\Tests;
 
-use MdFlex\SizeCalculator;
+use Kijtkd\SizeCalculator;
 use PHPUnit\Framework\TestCase;
 
 final class SizeCalculatorTest extends TestCase

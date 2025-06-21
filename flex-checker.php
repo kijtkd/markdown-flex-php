@@ -3,7 +3,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use MdFlex\FlexValidator;
+use Kijtkd\FlexValidator;
 
 function showHelp() {
     echo "Usage: php flex-checker.php [OPTIONS]\n";
@@ -88,7 +88,7 @@ if (empty($errors)) {
             echo "- Bubble Count: {$bubbleCount}\n";
         }
         
-        $sizeCalculator = new \MdFlex\SizeCalculator();
+        $sizeCalculator = new \Kijtkd\SizeCalculator();
         $totalSize = $sizeCalculator->jsonSize($data);
         echo "- Total Size: {$totalSize} bytes\n";
     }
