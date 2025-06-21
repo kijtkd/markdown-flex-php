@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace MdFlex;
 
-use League\CommonMark\Node\Block\Heading;
-use League\CommonMark\Node\Block\ListBlock;
-use League\CommonMark\Node\Block\ListItem;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 use League\CommonMark\Node\Block\Paragraph;
-use League\CommonMark\Node\Block\BlockQuote;
-use League\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Block\BlockQuote;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
+use League\CommonMark\Extension\CommonMark\Node\Block\ThematicBreak;
 use League\CommonMark\Node\Inline\Text;
-use League\CommonMark\Node\Inline\Image;
-use League\CommonMark\Node\Inline\Emphasis;
-use League\CommonMark\Node\Inline\Strong;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Emphasis;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Node\Node;
 use MdFlex\Theme\ThemeInterface;
 
@@ -44,6 +47,9 @@ final class ComponentFactory
             $node instanceof Image => $this->createImage($node),
             $node instanceof BlockQuote => $this->createBlockQuote($node),
             $node instanceof FencedCode => $this->createCodeBlock($node),
+            $node instanceof IndentedCode => $this->createIndentedCodeBlock($node),
+            $node instanceof ThematicBreak => $this->createThematicBreak($node),
+            $node instanceof Code => $this->createInlineCode($node),
             default => null,
         };
     }
@@ -52,22 +58,40 @@ final class ComponentFactory
     {
         $text = $this->extractText($heading);
         
-        return [
+        $component = [
             'type' => 'text',
             'text' => $this->truncateText($text),
             'size' => $this->theme->getHeadingSize($heading->getLevel()),
             'weight' => $this->theme->getHeadingWeight(),
             'wrap' => true,
         ];
+
+        // Add top margin for h2 and below
+        if ($heading->getLevel() > 1) {
+            $component['margin'] = 'lg';
+        }
+
+        return $component;
     }
 
     private function createParagraph(Paragraph $paragraph): array
     {
-        $text = $this->extractText($paragraph);
+        $contents = $this->extractRichText($paragraph);
         
+        if (count($contents) === 1 && is_string($contents[0])) {
+            // Simple text without formatting
+            return [
+                'type' => 'text',
+                'text' => $this->truncateText($contents[0]),
+                'size' => $this->theme->getTextSize(),
+                'wrap' => true,
+            ];
+        }
+        
+        // Rich text with formatting
         return [
             'type' => 'text',
-            'text' => $this->truncateText($text),
+            'contents' => $contents,
             'size' => $this->theme->getTextSize(),
             'wrap' => true,
         ];
@@ -76,10 +100,13 @@ final class ComponentFactory
     private function createList(ListBlock $list): array
     {
         $items = [];
+        $isOrdered = $list->getListData()->type === ListBlock::TYPE_ORDERED;
+        $counter = $list->getListData()->start ?? 1;
         
         foreach ($list->children() as $item) {
             if ($item instanceof ListItem) {
-                $items[] = $this->createListItem($item);
+                $items[] = $this->createListItem($item, $isOrdered, $counter);
+                if ($isOrdered) $counter++;
             }
         }
         
@@ -88,12 +115,14 @@ final class ComponentFactory
             'layout' => 'vertical',
             'spacing' => 'sm',
             'contents' => $items,
+            'margin' => 'md',
         ];
     }
 
-    private function createListItem(ListItem $item): array
+    private function createListItem(ListItem $item, bool $isOrdered = false, int $number = 1): array
     {
         $text = $this->extractText($item);
+        $marker = $isOrdered ? "{$number}." : '•';
         
         return [
             'type' => 'box',
@@ -102,9 +131,11 @@ final class ComponentFactory
             'contents' => [
                 [
                     'type' => 'text',
-                    'text' => '•',
+                    'text' => $marker,
                     'size' => $this->theme->getTextSize(),
+                    'color' => '#666666',
                     'flex' => 0,
+                    'margin' => 'none',
                 ],
                 [
                     'type' => 'text',
@@ -112,6 +143,7 @@ final class ComponentFactory
                     'size' => $this->theme->getTextSize(),
                     'wrap' => true,
                     'flex' => 1,
+                    'margin' => 'sm',
                 ],
             ],
         ];
@@ -137,12 +169,17 @@ final class ComponentFactory
             'layout' => 'vertical',
             'backgroundColor' => $this->theme->getQuoteBackgroundColor(),
             'paddingAll' => 'md',
+            'margin' => 'md',
+            'cornerRadius' => '4px',
+            'borderWidth' => '2px',
+            'borderColor' => '#E0E0E0',
             'contents' => [
                 [
                     'type' => 'text',
                     'text' => $this->truncateText($text),
                     'size' => $this->theme->getTextSize(),
                     'wrap' => true,
+                    'style' => 'italic',
                 ],
             ],
         ];
@@ -151,39 +188,52 @@ final class ComponentFactory
     private function createCodeBlock(FencedCode $code): array
     {
         $content = $code->getLiteral();
+        $language = $code->getInfo() ?? '';
         
         if ($this->options['code_img'] ?? false) {
             // TODO: Implement image generation
-            return $this->createCodeAsText($content);
+            return $this->createCodeAsText($content, $language);
         }
         
-        return $this->createCodeAsText($content);
+        return $this->createCodeAsText($content, $language);
     }
 
-    private function createCodeAsText(string $code): array
+    private function createCodeAsText(string $code, string $language = ''): array
     {
-        $lines = explode("\n", $code);
+        $lines = explode("\n", rtrim($code));
         $components = [];
         
-        foreach ($lines as $line) {
-            if (empty($line)) {
-                continue;
-            }
-            
+        // Add language label if provided
+        if (!empty($language)) {
             $components[] = [
                 'type' => 'text',
-                'text' => $this->truncateText($line),
+                'text' => $language,
+                'size' => 'xs',
+                'color' => '#888888',
+                'weight' => 'bold',
+                'margin' => 'none',
+            ];
+        }
+        
+        foreach ($lines as $line) {
+            $components[] = [
+                'type' => 'text',
+                'text' => empty($line) ? ' ' : $this->truncateText($line),
                 'size' => $this->theme->getCodeSize(),
                 'wrap' => false,
+                'color' => '#333333',
+                'fontFamily' => 'monospace',
             ];
         }
         
         return [
             'type' => 'box',
             'layout' => 'vertical',
-            'spacing' => 'none',
+            'spacing' => 'xs',
             'backgroundColor' => '#F6F8FA',
-            'paddingAll' => 'sm',
+            'paddingAll' => 'md',
+            'margin' => 'md',
+            'cornerRadius' => '4px',
             'contents' => $components,
         ];
     }
@@ -205,6 +255,83 @@ final class ComponentFactory
         }
         
         return trim($text);
+    }
+
+    private function createIndentedCodeBlock(IndentedCode $code): array
+    {
+        return $this->createCodeAsText($code->getLiteral());
+    }
+
+    private function createThematicBreak(ThematicBreak $break): array
+    {
+        return [
+            'type' => 'separator',
+            'margin' => 'lg',
+            'color' => '#E0E0E0',
+        ];
+    }
+
+    private function createInlineCode(Code $code): array
+    {
+        return [
+            'type' => 'text',
+            'text' => $code->getLiteral(),
+            'size' => $this->theme->getCodeSize(),
+            'backgroundColor' => '#F6F8FA',
+            'color' => '#D73A49',
+            'wrap' => false,
+        ];
+    }
+
+    private function extractRichText(Node $node): array
+    {
+        $contents = [];
+        $currentText = '';
+        
+        foreach ($node->children() as $child) {
+            if ($child instanceof Text) {
+                $currentText .= $child->getLiteral();
+            } elseif ($child instanceof Strong) {
+                if (!empty($currentText)) {
+                    $contents[] = $currentText;
+                    $currentText = '';
+                }
+                $contents[] = [
+                    'type' => 'span',
+                    'text' => $this->extractText($child),
+                    'weight' => 'bold',
+                ];
+            } elseif ($child instanceof Emphasis) {
+                if (!empty($currentText)) {
+                    $contents[] = $currentText;
+                    $currentText = '';
+                }
+                $contents[] = [
+                    'type' => 'span', 
+                    'text' => $this->extractText($child),
+                    'style' => 'italic',
+                ];
+            } elseif ($child instanceof Code) {
+                if (!empty($currentText)) {
+                    $contents[] = $currentText;
+                    $currentText = '';
+                }
+                $contents[] = [
+                    'type' => 'span',
+                    'text' => $child->getLiteral(),
+                    'color' => '#D73A49',
+                    'size' => $this->theme->getCodeSize(),
+                ];
+            } else {
+                $currentText .= $this->extractText($child);
+            }
+        }
+        
+        if (!empty($currentText)) {
+            $contents[] = $currentText;
+        }
+        
+        return empty($contents) ? [''] : $contents;
     }
 
     private function truncateText(string $text): string

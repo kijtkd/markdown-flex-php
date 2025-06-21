@@ -7,6 +7,8 @@ namespace MdFlex;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Node\NodeWalker;
 use League\CommonMark\Node\NodeWalkerEvent;
+use League\CommonMark\Node\Inline\AbstractInline;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 
 final class NodeVisitor
 {
@@ -31,6 +33,14 @@ final class NodeVisitor
             }
 
             $node = $event->getNode();
+            
+            // Skip document, inline nodes, and list items (they're handled by their parent blocks)
+            if ($node instanceof \League\CommonMark\Node\Block\Document || 
+                $node instanceof AbstractInline ||
+                $node instanceof ListItem) {
+                continue;
+            }
+            
             $component = $this->componentFactory->createComponent($node);
 
             if ($component !== null) {

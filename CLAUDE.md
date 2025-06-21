@@ -1,48 +1,57 @@
 # markdown-flex-php プロジェクト記録
 
 ## 概要
-MarkdownをLINE WORKS Bot用Flexible Templateに変換するPHPライブラリの実装。
-DESIGN.mdの仕様に基づき、完全な機能を持つライブラリとCLIツールを作成。
+MarkdownをLINE WORKS Bot用Flexible Templateに変換するPHPライブラリ。
+DESIGN.mdに基づく完全実装で、変換と検証の両機能を提供。
 
-## 実装コンポーネント
+## 主要コンポーネント
 
-### 核となるクラス
+### 変換系クラス
 - **MarkdownFlexConverter**: メインファサード
-- **SizeCalculator**: UTF-8バイト長測定
-- **BubbleBuilder**: 10KB制限管理、自動分割
-- **CarouselBuilder**: 50KB/10Bubble制限、altText生成
 - **ComponentFactory**: Markdown要素→Flexコンポーネント変換
-- **NodeVisitor**: AST走査とコンポーネント生成
+- **BubbleBuilder**: 10KB制限管理、自動分割
+- **CarouselBuilder**: 50KB/10Bubble制限、altText生成（400文字制限）
+- **NodeVisitor**: AST走査
+- **SizeCalculator**: UTF-8バイト長測定
 
-### パーサー・テーマ
-- **CommonMarkParser**: league/commonmark使用、テーブル拡張対応
-- **DefaultTheme/DarkTheme**: カスタマイズ可能なUI設定
+### 検証系クラス
+- **FlexValidator**: Flexメッセージの完全検証
+  - 構造検証（flex/bubble/carousel）
+  - サイズ制限チェック
+  - コンポーネント仕様検証（box/text/image/button/icon等）
+  - 特殊形式対応（hero-only bubble、separator footer）
 
-## CLIツール: markdown-flex.php
+### テーマ・パーサー
+- **CommonMarkParser**: league/commonmark使用
+- **DefaultTheme/DarkTheme**: カスタマイズ可能
 
-### 機能
+## CLIツール
+
+### markdown-flex.php（変換ツール）
 ```bash
 php8.3 markdown-flex.php -f input.md              # 標準出力
 php8.3 markdown-flex.php -f input.md -o out.json  # ファイル出力
-php8.3 markdown-flex.php -f input.md -t dark      # ダークテーマ
+php8.3 markdown-flex.php -f input.md -t dark      # テーマ指定
 php8.3 markdown-flex.php -f input.md -c           # コード画像化
 ```
 
-### オプション（getopt使用）
-- `-f <file>`: 入力Markdownファイル（必須）
-- `-o <file>`: 出力JSONファイル（省略時は標準出力）
-- `-t <theme>`: テーマ（default|dark）
-- `-c`: コードブロック画像化
-- `-h`: ヘルプ表示
+### flex-checker.php（検証ツール）
+```bash
+php8.3 flex-checker.php -f message.json           # ファイル検証
+php8.3 flex-checker.php -j '{"type":"flex",...}'  # JSON文字列検証
+php8.3 flex-checker.php -v                        # 詳細出力
+cat message.json | php8.3 flex-checker.php        # パイプ入力
+```
 
-## LINE WORKS Bot対応
+LINE WORKS Flex Simulatorと同等の検証機能を提供。samplesディレクトリの9サンプル全てに対応。
 
-### 最終出力形式
-samplesディレクトリを参考に修正済み：
+## 出力形式
+
+### Flexメッセージ形式
 ```json
 {
   "type": "flex",
-  "altText": "テキスト（400文字以内）",
+  "altText": "400文字以内",
   "contents": {
     "type": "bubble",
     "body": {...}
@@ -50,26 +59,26 @@ samplesディレクトリを参考に修正済み：
 }
 ```
 
-### 制限対応
-- **Bubble**: ≤10KB（自動分割）
-- **テキスト**: ≤2000文字（自動切り詰め）
-- **altText**: ≤400文字（自動切り詰め）
-- **Carousel**: ≤10 Bubble、≤50KB
+### 制限自動対応
+- Bubble: ≤10KB（超過時に自動分割）
+- Text: ≤2000文字（自動切り詰め）
+- altText: ≤400文字（自動切り詰め）
+- Carousel: ≤10 Bubbles、≤50KB
 
-## パッケージ構成
+## Markdown対応要素
+| 要素 | Flexコンポーネント |
+|-----|------------------|
+| `# 見出し` | text (size: xxl~xs) |
+| 段落 | text (wrap: true) |
+| `- リスト` | box + bullet + text |
+| `![画像](url)` | image |
+| `` `code` `` | text/box |
+| `> 引用` | box (背景色付き) |
 
-### Composer設定
-- **パッケージ名**: `kijtkd/markdown-flex-php`
-- **PHP要件**: ^8.1
-- **依存関係**: league/commonmark ^2.4, psr/simple-cache ^3.0
-- **PSR-4**: `MdFlex\\` → `src/`
+## インストール
 
-### インストール方法
-```bash
-# ローカルパス指定
-composer require kijtkd/markdown-flex-php
-
-# またはパス指定でリポジトリ追加
+### Composerローカルパス
+```json
 {
   "repositories": [{"type": "path", "url": "../markdown-flex-php"}],
   "require": {"kijtkd/markdown-flex-php": "*"}
@@ -78,36 +87,30 @@ composer require kijtkd/markdown-flex-php
 
 ## 使用例
 
-### 基本的な使用
+### 基本変換
 ```php
 use MdFlex\MarkdownFlexConverter;
 
 $converter = new MarkdownFlexConverter();
 [$json, $altText] = $converter->convert($markdown);
-
-// LINE WORKS Bot送信
-$client->post('/messages', [
-    'type' => 'flex',
-    'altText' => $altText,
-    'contents' => $json
-]);
 ```
 
-### テーマとオプション
+### 検証
 ```php
-use MdFlex\Theme\DarkTheme;
+use MdFlex\FlexValidator;
 
-$converter = (new MarkdownFlexConverter())
-    ->setTheme(new DarkTheme())
-    ->setOptions(['code_img' => true, 'max_lines' => 18]);
+$validator = new FlexValidator();
+$errors = $validator->validate($flexMessage);
+if (empty($errors)) {
+    // Valid
+}
 ```
 
-## テスト
-- PHPUnit設定済み（`composer test`）
-- 基本機能のユニットテスト実装
-- サイズ計算、変換機能の検証
+## 動作環境
+- PHP 8.1以上（8.3で動作確認済み）
+- 依存: league/commonmark ^2.4, psr/simple-cache ^3.0
 
-## 注意事項
-- DESIGN.mdはリポジトリに含めない（設計書のため）
-- .claude/ディレクトリもコミット対象外
-- PHP 8.3での動作確認済み
+## 除外ファイル
+- DESIGN.md（設計書）
+- .claude/（メタデータ）
+- 出力JSONファイル

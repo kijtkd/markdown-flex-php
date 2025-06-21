@@ -84,14 +84,8 @@ if (!empty($options)) {
 try {
     [$json, $altText] = $converter->convert($markdown);
     
-    // LINE WORKS Bot Flex message format
-    $output = [
-        'type' => 'flex',
-        'altText' => $altText,
-        'contents' => $json
-    ];
-    
-    $jsonOutput = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    // Output just the bubble/carousel content for simulator
+    $jsonOutput = json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     
     // Output result
     if (isset($args['output'])) {
