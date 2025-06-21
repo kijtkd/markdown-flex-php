@@ -9,6 +9,8 @@ use League\CommonMark\Node\NodeWalker;
 use League\CommonMark\Node\NodeWalkerEvent;
 use League\CommonMark\Node\Inline\AbstractInline;
 use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
+use League\CommonMark\Extension\Table\TableRow;
+use League\CommonMark\Extension\Table\TableCell;
 
 final class NodeVisitor
 {
@@ -34,10 +36,12 @@ final class NodeVisitor
 
             $node = $event->getNode();
             
-            // Skip document, inline nodes, and list items (they're handled by their parent blocks)
+            // Skip document, inline nodes, list items, and table components (they're handled by their parent blocks)
             if ($node instanceof \League\CommonMark\Node\Block\Document || 
                 $node instanceof AbstractInline ||
-                $node instanceof ListItem) {
+                $node instanceof ListItem ||
+                $node instanceof TableRow ||
+                $node instanceof TableCell) {
                 continue;
             }
             

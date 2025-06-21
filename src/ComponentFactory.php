@@ -12,6 +12,10 @@ use League\CommonMark\Extension\CommonMark\Node\Block\BlockQuote;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\ThematicBreak;
+use League\CommonMark\Extension\Table\Table;
+use League\CommonMark\Extension\Table\TableSection;
+use League\CommonMark\Extension\Table\TableRow;
+use League\CommonMark\Extension\Table\TableCell;
 use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Emphasis;
@@ -50,6 +54,7 @@ final class ComponentFactory
             $node instanceof IndentedCode => $this->createIndentedCodeBlock($node),
             $node instanceof ThematicBreak => $this->createThematicBreak($node),
             $node instanceof Code => $this->createInlineCode($node),
+            $node instanceof Table => $this->createTable($node),
             default => null,
         };
     }
@@ -245,10 +250,16 @@ final class ComponentFactory
         foreach ($node->children() as $child) {
             if ($child instanceof Text) {
                 $text .= $child->getLiteral();
+            } elseif ($child instanceof Code) {
+                // インラインコードの内容を含める
+                $text .= '`' . $child->getLiteral() . '`';
             } elseif ($child instanceof Strong) {
                 $text .= $this->extractText($child);
             } elseif ($child instanceof Emphasis) {
                 $text .= $this->extractText($child);
+            } elseif ($child instanceof Image) {
+                // 画像の場合はマークダウン形式で表現
+                $text .= '![' . ($child->getTitle() ?? '') . '](' . $child->getUrl() . ')';
             } else {
                 $text .= $this->extractText($child);
             }
@@ -332,6 +343,121 @@ final class ComponentFactory
         }
         
         return empty($contents) ? [''] : $contents;
+    }
+
+    private function createTable(Table $table): array
+    {
+        $rows = [];
+        $isFirstSection = true;
+        
+        foreach ($table->children() as $section) {
+            if ($section instanceof TableSection) {
+                $isHeader = $isFirstSection && $section->isHead();
+                foreach ($section->children() as $row) {
+                    if ($row instanceof TableRow) {
+                        $tableRow = $this->createTableRow($row, $isHeader);
+                        if (!empty($tableRow)) {
+                            $rows[] = $tableRow;
+                        }
+                        $isHeader = false; // Only first row in head section is header
+                    }
+                }
+                $isFirstSection = false;
+            }
+        }
+        
+        return [
+            'type' => 'box',
+            'layout' => 'vertical',
+            'margin' => 'md',
+            'spacing' => 'sm',
+            'contents' => $rows,
+        ];
+    }
+
+    private function createTableRow(TableRow $row, bool $isHeader = false): array
+    {
+        $cells = [];
+        
+        foreach ($row->children() as $cell) {
+            if ($cell instanceof TableCell) {
+                $tableCell = $this->createTableCell($cell, $isHeader);
+                if ($tableCell !== null) {
+                    $cells[] = $tableCell;
+                }
+            }
+        }
+        
+        if (empty($cells)) {
+            return [];
+        }
+        
+        $rowBox = [
+            'type' => 'box',
+            'layout' => 'horizontal',
+            'spacing' => 'md',
+            'contents' => $cells,
+        ];
+        
+        if ($isHeader) {
+            $rowBox['paddingBottom'] = 'sm';
+            // Add separator after header
+            return [
+                'type' => 'box',
+                'layout' => 'vertical',
+                'spacing' => 'xs',
+                'contents' => [
+                    $rowBox,
+                    [
+                        'type' => 'separator',
+                        'color' => '#E0E0E0',
+                    ]
+                ],
+            ];
+        }
+        
+        return $rowBox;
+    }
+
+    private function createTableCell(TableCell $cell, bool $isHeader = false): array
+    {
+        $text = $this->extractText($cell);
+        
+        if (empty(trim($text))) {
+            $text = ' '; // Empty cell placeholder
+        }
+        
+        $cellComponent = [
+            'type' => 'text',
+            'text' => $this->truncateText($text),
+            'size' => $isHeader ? 'sm' : 'xs',
+            'wrap' => true,
+            'flex' => 1,
+        ];
+        
+        if ($isHeader) {
+            $cellComponent['weight'] = 'bold';
+            $cellComponent['color'] = '#333333';
+        } else {
+            $cellComponent['color'] = '#666666';
+        }
+        
+        // Handle alignment - check if method exists
+        if (method_exists($cell, 'getAlignment') && $cell->getAlignment() !== null) {
+            switch ($cell->getAlignment()) {
+                case 'left':
+                    $cellComponent['align'] = 'start';
+                    break;
+                case 'center':
+                    $cellComponent['align'] = 'center';
+                    break;
+                case 'right':
+                    $cellComponent['align'] = 'end';
+                    break;
+            }
+        }
+        
+        return $cellComponent;
     }
 
     private function truncateText(string $text): string
