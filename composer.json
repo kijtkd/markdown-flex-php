@@ -1,9 +1,15 @@
 {
-    "name": "mdflex/markdown-flex-php",
+    "name": "kijtkd/markdown-flex-php",
     "description": "Convert Markdown to LINE WORKS Bot Flexible Template",
     "type": "library",
-    "keywords": ["markdown", "line-works", "flex-message", "bot", "converter"],
-    "homepage": "https://github.com/mdflex/markdown-flex-php",
+    "keywords": [
+        "markdown",
+        "line-works",
+        "flex-message",
+        "bot",
+        "converter"
+    ],
+    "homepage": "https://github.com/kijtkd/markdown-flex-php",
     "license": "MIT",
     "authors": [
         {
@@ -12,8 +18,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/mdflex/markdown-flex-php/issues",
-        "source": "https://github.com/mdflex/markdown-flex-php"
+        "issues": "https://github.com/kijtkd/markdown-flex-php/issues",
+        "source": "https://github.com/kijtkd/markdown-flex-php"
     },
     "require": {
         "php": "^8.1",
