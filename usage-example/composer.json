@@ -1,0 +1,12 @@
+{
+    "name": "example/usage",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../"
+        }
+    ],
+    "require": {
+        "mdflex/markdown-flex-php": "*"
+    }
+}
