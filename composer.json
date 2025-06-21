@@ -1,0 +1,49 @@
+{
+    "name": "mdflex/markdown-flex-php",
+    "description": "Convert Markdown to LINE WORKS Bot Flexible Template",
+    "type": "library",
+    "keywords": ["markdown", "line-works", "flex-message", "bot", "converter"],
+    "homepage": "https://github.com/mdflex/markdown-flex-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your-email@example.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/mdflex/markdown-flex-php/issues",
+        "source": "https://github.com/mdflex/markdown-flex-php"
+    },
+    "require": {
+        "php": "^8.1",
+        "league/commonmark": "^2.4",
+        "psr/simple-cache": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.10",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "suggest": {
+        "league/flysystem": "For image upload abstraction (S3, etc.)"
+    },
+    "autoload": {
+        "psr-4": {
+            "MdFlex\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MdFlex\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpstan": "phpstan analyse src --level 8",
+        "cs": "phpcs src --standard=PSR12",
+        "cs-fix": "phpcbf src --standard=PSR12"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
