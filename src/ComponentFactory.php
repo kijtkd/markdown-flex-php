@@ -304,7 +304,10 @@ final class ComponentFactory
                 $currentText .= $child->getLiteral();
             } elseif ($child instanceof Strong) {
                 if (!empty($currentText)) {
-                    $contents[] = $currentText;
+                    $contents[] = [
+                        'type' => 'span',
+                        'text' => $currentText,
+                    ];
                     $currentText = '';
                 }
                 $contents[] = [
@@ -314,7 +317,10 @@ final class ComponentFactory
                 ];
             } elseif ($child instanceof Emphasis) {
                 if (!empty($currentText)) {
-                    $contents[] = $currentText;
+                    $contents[] = [
+                        'type' => 'span',
+                        'text' => $currentText,
+                    ];
                     $currentText = '';
                 }
                 $contents[] = [
@@ -324,7 +330,10 @@ final class ComponentFactory
                 ];
             } elseif ($child instanceof Code) {
                 if (!empty($currentText)) {
-                    $contents[] = $currentText;
+                    $contents[] = [
+                        'type' => 'span',
+                        'text' => $currentText,
+                    ];
                     $currentText = '';
                 }
                 $contents[] = [
@@ -339,10 +348,13 @@ final class ComponentFactory
         }
         
         if (!empty($currentText)) {
-            $contents[] = $currentText;
+            $contents[] = [
+                'type' => 'span',
+                'text' => $currentText,
+            ];
         }
         
-        return empty($contents) ? [''] : $contents;
+        return empty($contents) ? [['type' => 'span', 'text' => '']] : $contents;
     }
 
     private function createTable(Table $table): array
