@@ -45,6 +45,18 @@ final class NodeVisitor
                 continue;
             }
             
+            // Skip paragraphs that are direct children of list items
+            if ($node instanceof \League\CommonMark\Node\Block\Paragraph && 
+                $node->parent() instanceof ListItem) {
+                continue;
+            }
+            
+            // Skip nested lists (lists that are children of list items)
+            if ($node instanceof \League\CommonMark\Extension\CommonMark\Node\Block\ListBlock && 
+                $node->parent() instanceof ListItem) {
+                continue;
+            }
+            
             $component = $this->componentFactory->createComponent($node);
 
             if ($component !== null) {

@@ -126,7 +126,15 @@ final class ComponentFactory
 
     private function createListItem(ListItem $item, bool $isOrdered = false, int $number = 1): array
     {
-        $text = $this->extractText($item);
+        // Extract only direct paragraph text, not nested lists
+        $text = '';
+        foreach ($item->children() as $child) {
+            if ($child instanceof Paragraph) {
+                $text .= $this->extractText($child);
+            }
+            // Skip nested lists - they will be processed separately
+        }
+        
         $marker = $isOrdered ? "{$number}." : '•';
         
         return [
