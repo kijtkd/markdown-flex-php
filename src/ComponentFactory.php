@@ -257,7 +257,10 @@ final class ComponentFactory
         
         foreach ($node->children() as $child) {
             if ($child instanceof Text) {
-                $text .= $child->getLiteral();
+                $literal = $child->getLiteral();
+                // 改行を適切に処理：連続する改行を単一スペースに変換
+                $literal = preg_replace('/\s+/', ' ', $literal);
+                $text .= $literal;
             } elseif ($child instanceof Code) {
                 // インラインコードの内容を含める
                 $text .= '`' . $child->getLiteral() . '`';

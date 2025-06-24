@@ -45,9 +45,10 @@ final class NodeVisitor
                 continue;
             }
             
-            // Skip paragraphs that are direct children of list items
+            // Skip paragraphs that are direct children of list items or block quotes
             if ($node instanceof \League\CommonMark\Node\Block\Paragraph && 
-                $node->parent() instanceof ListItem) {
+                ($node->parent() instanceof ListItem || 
+                 $node->parent() instanceof \League\CommonMark\Extension\CommonMark\Node\Block\BlockQuote)) {
                 continue;
             }
             
