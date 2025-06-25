@@ -21,6 +21,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Emphasis;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Node\Node;
 use Kijtkd\Theme\ThemeInterface;
 
@@ -54,6 +55,7 @@ final class ComponentFactory
             $node instanceof IndentedCode => $this->createIndentedCodeBlock($node),
             $node instanceof ThematicBreak => $this->createThematicBreak($node),
             $node instanceof Code => $this->createInlineCode($node),
+            $node instanceof Link => $this->createLink($node),
             $node instanceof Table => $this->createTable($node),
             default => null,
         };
@@ -126,13 +128,44 @@ final class ComponentFactory
 
     private function createListItem(ListItem $item, bool $isOrdered = false, int $number = 1): array
     {
-        // Extract only direct paragraph text, not nested lists
-        $text = '';
+        // Extract paragraph content with rich text support
+        $contents = [];
         foreach ($item->children() as $child) {
             if ($child instanceof Paragraph) {
-                $text .= $this->extractText($child);
+                $richContents = $this->extractRichText($child);
+                if (count($richContents) === 1 && is_string($richContents[0])) {
+                    $contents = [
+                        'type' => 'text',
+                        'text' => $this->truncateText($richContents[0]),
+                        'size' => $this->theme->getTextSize(),
+                        'wrap' => true,
+                        'flex' => 1,
+                        'margin' => 'sm',
+                    ];
+                } else {
+                    $contents = [
+                        'type' => 'text',
+                        'contents' => $richContents,
+                        'size' => $this->theme->getTextSize(),
+                        'wrap' => true,
+                        'flex' => 1,
+                        'margin' => 'sm',
+                    ];
+                }
+                break;
             }
             // Skip nested lists - they will be processed separately
+        }
+        
+        if (empty($contents)) {
+            $contents = [
+                'type' => 'text',
+                'text' => '',
+                'size' => $this->theme->getTextSize(),
+                'wrap' => true,
+                'flex' => 1,
+                'margin' => 'sm',
+            ];
         }
         
         $marker = $isOrdered ? "{$number}." : '•';
@@ -150,14 +183,7 @@ final class ComponentFactory
                     'flex' => 0,
                     'margin' => 'none',
                 ],
-                [
-                    'type' => 'text',
-                    'text' => $this->truncateText($text),
-                    'size' => $this->theme->getTextSize(),
-                    'wrap' => true,
-                    'flex' => 1,
-                    'margin' => 'sm',
-                ],
+                $contents,
             ],
         ];
     }
@@ -175,7 +201,26 @@ final class ComponentFactory
 
     private function createBlockQuote(BlockQuote $quote): array
     {
-        $text = $this->extractText($quote);
+        // 引用内のリッチテキストを処理
+        $richContents = [];
+        foreach ($quote->children() as $child) {
+            if ($child instanceof Paragraph) {
+                $richContents = array_merge($richContents, $this->extractRichText($child));
+            }
+        }
+        
+        $textComponent = [
+            'type' => 'text',
+            'size' => $this->theme->getTextSize(),
+            'wrap' => true,
+            'style' => 'italic',
+        ];
+        
+        if (count($richContents) === 1 && is_string($richContents[0])) {
+            $textComponent['text'] = $this->truncateText($richContents[0]);
+        } else {
+            $textComponent['contents'] = $richContents;
+        }
         
         return [
             'type' => 'box',
@@ -186,15 +231,7 @@ final class ComponentFactory
             'cornerRadius' => '4px',
             'borderWidth' => '2px',
             'borderColor' => '#E0E0E0',
-            'contents' => [
-                [
-                    'type' => 'text',
-                    'text' => $this->truncateText($text),
-                    'size' => $this->theme->getTextSize(),
-                    'wrap' => true,
-                    'style' => 'italic',
-                ],
-            ],
+            'contents' => [$textComponent],
         ];
     }
 
@@ -271,6 +308,9 @@ final class ComponentFactory
             } elseif ($child instanceof Image) {
                 // 画像の場合はマークダウン形式で表現
                 $text .= '![' . ($child->getTitle() ?? '') . '](' . $child->getUrl() . ')';
+            } elseif ($child instanceof Link) {
+                // リンクの場合はテキスト部分のみを取得
+                $text .= $this->extractText($child);
             } else {
                 $text .= $this->extractText($child);
             }
@@ -305,6 +345,23 @@ final class ComponentFactory
         ];
     }
 
+    private function createLink(Link $link): array
+    {
+        $text = $this->extractText($link);
+        $url = $link->getUrl();
+        
+        return [
+            'type' => 'text',
+            'text' => $this->truncateText($text),
+            'size' => $this->theme->getTextSize(),
+            'color' => '#1155CC',
+            'action' => [
+                'type' => 'uri',
+                'uri' => $url,
+            ],
+        ];
+    }
+
     private function extractRichText(Node $node): array
     {
         $contents = [];
@@ -321,11 +378,17 @@ final class ComponentFactory
                     ];
                     $currentText = '';
                 }
-                $contents[] = [
-                    'type' => 'span',
-                    'text' => $this->extractText($child),
-                    'weight' => 'bold',
-                ];
+                // Strong内にリンクがある場合の処理
+                $strongContents = $this->extractRichText($child);
+                foreach ($strongContents as $strongContent) {
+                    if (isset($strongContent['action'])) {
+                        // リンクがある場合は太字とリンクの両方を適用
+                        $strongContent['weight'] = 'bold';
+                    } else {
+                        $strongContent['weight'] = 'bold';
+                    }
+                    $contents[] = $strongContent;
+                }
             } elseif ($child instanceof Emphasis) {
                 if (!empty($currentText)) {
                     $contents[] = [
@@ -334,11 +397,17 @@ final class ComponentFactory
                     ];
                     $currentText = '';
                 }
-                $contents[] = [
-                    'type' => 'span', 
-                    'text' => $this->extractText($child),
-                    'style' => 'italic',
-                ];
+                // Emphasis内にリンクがある場合の処理
+                $emphasisContents = $this->extractRichText($child);
+                foreach ($emphasisContents as $emphasisContent) {
+                    if (isset($emphasisContent['action'])) {
+                        // リンクがある場合は斜体とリンクの両方を適用
+                        $emphasisContent['style'] = 'italic';
+                    } else {
+                        $emphasisContent['style'] = 'italic';
+                    }
+                    $contents[] = $emphasisContent;
+                }
             } elseif ($child instanceof Code) {
                 if (!empty($currentText)) {
                     $contents[] = [
@@ -352,6 +421,23 @@ final class ComponentFactory
                     'text' => $child->getLiteral(),
                     'color' => '#D73A49',
                     'size' => $this->theme->getCodeSize(),
+                ];
+            } elseif ($child instanceof Link) {
+                if (!empty($currentText)) {
+                    $contents[] = [
+                        'type' => 'span',
+                        'text' => $currentText,
+                    ];
+                    $currentText = '';
+                }
+                $contents[] = [
+                    'type' => 'span',
+                    'text' => $this->extractText($child),
+                    'color' => '#1155CC',
+                    'action' => [
+                        'type' => 'uri',
+                        'uri' => $child->getUrl(),
+                    ],
                 ];
             } else {
                 $currentText .= $this->extractText($child);
